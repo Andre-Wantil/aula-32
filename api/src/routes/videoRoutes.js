@@ -13,7 +13,15 @@ router.get('/videos', (_req, res) => {
     res.status(200).json(videos);
 });
 
-router.get('/videos/:id', (req, res) => {});
+router.get('/videos/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    let video = videos.filter(i => i.id === id);
+
+    if (videos.some(i => i.id === id)) {
+
+        res.status(200).json(video)
+    }
+});
 
 router.post('/videos', (req, res) => {
     const { titulo, descricao, quantidadeViews, image, canalID } = req.body;
